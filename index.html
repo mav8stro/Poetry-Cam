@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#16081B">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>VerseCam — Where Moments Turn Into Poems</title>
+  <meta name="description" content="VerseCam pairs your live camera and photographs with evocative poetry inspired by the scene. Capture, keep, share, and export your poetic journal.">
+
+  <!-- Google Fonts: Fraunces (Editorial Display Serif) & Outfit (Modern Sans) & Space Mono (Scrapbook Stamps) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app-container" class="app-shell">
+    
+    <!-- TOP APP HEADER -->
+    <header class="app-header">
+      <div class="brand-group" id="header-brand">
+        <div class="brand-stamp">
+          <span class="stamp-dot"></span>
+          <span class="brand-symbol">✦</span>
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-title">VerseCam</h1>
+          <span class="brand-subtitle">Poetic Vision System</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <!-- Dark Mode / OLED Theme Toggle -->
+        <button id="btn-toggle-theme" class="header-icon-btn" title="Toggle OLED Dark Mode" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+
+        <!-- AI Ethics, Safety & Charter Shield -->
+        <button id="btn-open-ethics" class="header-icon-btn" title="Poetic Ethics, Privacy & Terms" aria-label="Open AI Ethics and Policies">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </button>
+
+        <button id="btn-quick-songwriter" class="header-icon-btn" title="Songwriter Lab" aria-label="Open Songwriter Lab">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </button>
+        <button id="btn-open-settings" class="header-icon-btn" title="Settings" aria-label="Open Settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN VIEW CONTAINER -->
+    <main id="views-container" class="views-wrapper">
+      
+      <!-- ================= 1. HOME SCREEN ================= -->
+      <section id="view-home" class="view-screen active">
+        <div class="home-scroll-content">
+          
+          <!-- Hero Section with Dusk Mood Image -->
+          <div class="hero-scrapbook-card">
+            <div class="scrapbook-tape top-left"></div>
+            <div class="scrapbook-tape top-right"></div>
+            <div class="hero-image-wrap">
+              <img id="home-featured-img" src="assets/dusk-featured.jpg" alt="Dusk Landscape" class="hero-image">
+              <div class="hero-overlay"></div>
+              <div class="hero-badge-tag">
+                <span class="live-dot"></span>
+                <span>ISSUE Nº 07 // TWILIGHT</span>
+              </div>
+              <div class="hero-poetic-quote">
+                <p class="hero-verse-line">“The hills whisper into purple dusk,</p>
+                <p class="hero-verse-line">where stray light lingers like an unsaid word.”</p>
+                <span class="hero-caption-meta">Captured at Golden Hour • VerseCam AI</span>
+              </div>
+            </div>
+
+            <!-- Primary CTAs directly beneath the hero -->
+            <div class="hero-cta-bar">
+              <button id="btn-home-camera" class="btn-creative-primary" aria-label="Open Camera">
+                <span class="btn-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </span>
+                <span class="btn-text-group">
+                  <strong class="btn-title">Take a photo</strong>
+                  <span class="btn-desc">Capture live scene & verse</span>
+                </span>
+                <span class="shutter-sparkle">✦</span>
+              </button>
+
+              <button id="btn-home-gallery" class="btn-creative-secondary" aria-label="Open Gallery">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                <span>Gallery</span>
+              </button>
+              <input type="file" id="global-file-input" accept="image/*" class="sr-only">
+            </div>
+          </div>
+
+
+
+          <!-- Philosophy Footer Quote -->
+          <div class="scrapbook-footer-note">
+            <span class="scrapbook-pin">📍</span>
+            <p>“Photography is the pause button on life; poetry is what happens when you press play again.”</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= 2. CAMERA VIEWFINDER SCREEN ================= -->
+      <section id="view-camera" class="view-screen">
+        <div class="camera-viewport-container">
+          
+          <!-- Live Video or Fallback Frame -->
+          <div class="viewfinder-wrapper" id="viewfinder-box">
+            <video id="camera-stream" autoplay playsinline muted class="camera-video-feed"></video>
+            <!-- Real-time AR Bounding Box Layer -->
+            <canvas id="viewfinder-ar-canvas" class="viewfinder-ar-canvas"></canvas>
+            
+            <!-- Fallback Canvas / Still Photo Viewfinder -->
+            <div id="camera-fallback-canvas" class="camera-fallback-screen hidden">
+              <div class="fallback-frame-inner">
+                <div class="fallback-art-illustration">
+                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </div>
+                <h3 class="fallback-title">Camera Preview Inactive</h3>
+                <p class="fallback-desc">Grant webcam permissions or import an image directly from your library to compose verses.</p>
+                <div class="fallback-btn-group">
+                  <button id="btn-request-cam-perm" class="btn-mini-lime">Retry Permission</button>
+                  <button id="btn-camera-upload-fallback" class="btn-mini-coral">Select File</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Viewfinder Crosshairs & Framing Lines -->
+            <div class="viewfinder-hud">
+              <div class="hud-corner top-left"></div>
+              <div class="hud-corner top-right"></div>
+              <div class="hud-corner bottom-left"></div>
+              <div class="hud-corner bottom-right"></div>
+              
+              <div class="hud-center-crosshair"></div>
+
+              <!-- Top Status Strip in Viewfinder -->
+              <div class="viewfinder-top-bar">
+                <button id="btn-camera-back" class="hud-round-btn" aria-label="Exit Camera">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <div class="hud-status-badge">
+                  <span class="hud-live-rec"></span>
+                  <span id="hud-prompt-badge">CNN-RNN COGNITION</span>
+                </div>
+                <div class="hud-top-right-group">
+                  <button id="btn-toggle-ar" class="hud-round-btn active" title="Toggle Live AR Object Boxes" aria-label="Toggle AR Vision">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>
+                  </button>
+                  <button id="btn-switch-camera" class="hud-round-btn" title="Switch Camera" aria-label="Switch Camera">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 16v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3"/><path d="M4 16c0-4.42 3.58-8 8-8s8 3.58 8 8"/><polyline points="16 12 20 16 16 20"/><path d="M20 8c0-2.21-.89-4.21-2.34-5.66"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Live Dynamic Poem Overlay on Viewfinder -->
+              <div class="viewfinder-poem-overlay" id="viewfinder-poem-box">
+                <div class="poem-tape-top"></div>
+                <div class="overlay-meta-row">
+                  <span class="verse-active-stamp" id="overlay-mood-indicator">✦ DREAMY CADENCE</span>
+                  <div class="viewfinder-detected-pill" id="viewfinder-detected-badge">
+                    <span class="scanner-dot"></span>
+                    <span id="viewfinder-object-label">VISION: SCANNING</span>
+                  </div>
+                  <button id="btn-bookmark-verse" class="btn-micro-bookmark" title="Bookmark Verse Only">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                  </button>
+                </div>
+                <div class="live-verse-text" id="viewfinder-live-verse">
+                  “Light folds through silence,<br>
+                  tracing edges the eye had almost forgotten.”
+                </div>
+                <div class="overlay-actions-row">
+                  <button id="btn-refresh-live-verse" class="btn-hud-refresh" title="Generate New Verse">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                    <span>Refresh Verse</span>
+                  </button>
+                  <span class="verse-timestamp" id="hud-verse-time">LIVE</span>
+                </div>
+              </div>
+
+              <!-- Flash Effect Overlay -->
+              <div id="camera-flash-overlay" class="camera-flash"></div>
+
+            </div>
+          </div>
+
+          <!-- Bottom Camera Controls Bar -->
+          <div class="camera-bottom-deck">
+            
+            <!-- Gallery / Import Trigger -->
+            <button id="btn-camera-import" class="deck-btn-secondary" title="Import Image" aria-label="Import Image from files">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>Import</span>
+            </button>
+
+            <!-- Massive Main Shutter Button -->
+            <button id="btn-capture-shutter" class="deck-shutter-btn" aria-label="Capture Photo and Poem">
+              <div class="shutter-outer-ring">
+                <div class="shutter-inner-core"></div>
+              </div>
+            </button>
+
+            <!-- Songwriter Shortcut from Viewfinder -->
+            <button id="btn-camera-to-songwriter" class="deck-btn-secondary" title="Open Songwriter" aria-label="Open Songwriter">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+              <span>Lyrics</span>
+            </button>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= 3. POEM RESULT SCREEN ================= -->
+      <section id="view-result" class="view-screen">
+        <div class="result-scroll-content">
+          
+          <div class="result-header-bar">
+            <button id="btn-result-back" class="nav-back-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+              <span>Camera</span>
+            </button>
+            <div class="result-badge-label">COMPOSED MOMENT</div>
+            <button id="btn-result-favourite" class="favourite-toggle-btn" title="Add to Favourites" aria-label="Toggle favourite">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+          </div>
+
+          <!-- Composed Editorial Scrapbook Card (Snapshot ready) -->
+          <div id="composed-snapshot-card" class="editorial-art-card">
+            <div class="card-washi-tape"></div>
+            
+            <div class="card-media-frame">
+              <img id="result-photo-display" src="" alt="Captured Moment" class="result-photo-img">
+              <div class="photo-timestamp-tag" id="result-date-stamp">OCT 30 • 23:05</div>
+            </div>
+
+            <div class="card-poem-body">
+              <div class="poem-stamp-row">
+                <span class="editorial-mood-pill" id="result-mood-pill">✦ DREAMY</span>
+                <span class="editorial-prompt-pill" id="result-prompt-pill">NATURE</span>
+                <span class="editorial-env-pill" id="result-environment-pill">✦ TWILIGHT LIGHT</span>
+                <span class="editorial-model-pill" id="result-model-pill">✦ CNN-RNN // BEAM-3</span>
+              </div>
+
+              <!-- Atmosphere Color Palette Row -->
+              <div class="atmosphere-palette-strip" id="result-palette-row">
+                <span class="palette-strip-title">ATMOSPHERE PALETTE:</span>
+                <div class="palette-swatches-box" id="result-palette-swatches"></div>
+              </div>
+
+              <!-- Object Detection Badges Row with Interactive Tap Hint -->
+              <div class="detected-elements-row" id="result-detected-objects-row">
+                <div class="elements-label-row">
+                  <span class="detected-elements-label">DETECTED OBJECTS:</span>
+                  <span class="elements-tap-hint">Tap any object to focus poem</span>
+                </div>
+                <div class="detected-chips-container" id="result-detected-chips"></div>
+              </div>
+
+              <div id="result-poem-text" class="editorial-poem-text"></div>
+
+              <div class="editorial-card-footer">
+                <div class="brand-watermark">
+                  <span class="wm-symbol">✦</span>
+                  <span class="wm-name">VerseCam</span>
+                </div>
+                <div class="editorial-meta-line" id="result-cadence-label">Free Verse • AI Resonance</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions Palette -->
+          <div class="result-actions-palette">
+            
+            <button id="btn-export-image" class="action-tile-btn primary-coral" title="Export high-res card as PNG">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <div class="tile-text">
+                <strong>Export Image</strong>
+                <span>High-res PNG snapshot</span>
+              </div>
+            </button>
+
+            <button id="btn-share-verse" class="action-tile-btn secondary-plum" title="Share via native share or link">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+              <div class="tile-text">
+                <strong>Share</strong>
+                <span>Native sheet or link</span>
+              </div>
+            </button>
+
+            <button id="btn-copy-poem" class="action-tile-btn secondary-plum" title="Copy poem text to clipboard">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <div class="tile-text">
+                <strong>Copy Verse</strong>
+                <span>Plain text poem</span>
+              </div>
+            </button>
+
+            <button id="btn-reroll-poem" class="action-tile-btn accent-lime-tile" title="Re-roll poem with another angle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+              <div class="tile-text">
+                <strong>Remix Verse</strong>
+                <span>New poetic rendition</span>
+              </div>
+            </button>
+
+            <button id="btn-convert-lyrics" class="action-tile-btn secondary-plum" title="Turn this moment into full song lyrics">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+              <div class="tile-text">
+                <strong>To Songwriter</strong>
+                <span>Full structured lyrics</span>
+              </div>
+            </button>
+
+          </div>
+
+          <!-- Hidden Canvas for high-res snapshot export -->
+          <canvas id="export-render-canvas" class="sr-only"></canvas>
+
+        </div>
+      </section>
+
+      <!-- ================= 4. LIBRARY SCREEN ================= -->
+      <section id="view-library" class="view-screen">
+        <div class="library-scroll-content">
+          
+          <div class="library-top-bar">
+            <div>
+              <h2 class="page-title">Library</h2>
+              <span class="page-subtitle">Your moments & journal entries</span>
+            </div>
+            <button id="btn-clear-library" class="btn-text-subtle" title="Clear current session records">Reset</button>
+          </div>
+
+          <!-- Filter Pills: All, Photos, Favourites -->
+          <div class="library-filters-bar" role="tablist">
+            <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">
+              <span>All</span>
+              <span class="filter-count" id="count-all">0</span>
+            </button>
+            <button class="filter-tab" data-filter="photos" role="tab" aria-selected="false">
+              <span>Photos</span>
+              <span class="filter-count" id="count-photos">0</span>
+            </button>
+            <button class="filter-tab" data-filter="favourites" role="tab" aria-selected="false">
+              <span>Favourites</span>
+              <span class="filter-count" id="count-favs">0</span>
+            </button>
+          </div>
+
+          <!-- Empty State (Illustrated Contact Sheet Panel) -->
+          <div id="library-empty-panel" class="library-empty-contact-sheet">
+            <div class="contact-sheet-holes left"></div>
+            <div class="contact-sheet-holes right"></div>
+            
+            <div class="empty-sheet-card">
+              <div class="empty-polaroid-graphic">
+                <div class="polaroid-inner">
+                  <div class="film-grain-mesh"></div>
+                  <span class="polaroid-sparkle">✦</span>
+                  <span class="film-num">FRAME 00</span>
+                </div>
+              </div>
+              <h3 class="empty-headline">Your Scrapbook is Empty</h3>
+              <p class="empty-description">
+                VerseCam doesn't populate fake demo moments. Step outside, aim your camera at the world, or import a treasured photograph to begin your collection.
+              </p>
+              
+              <div class="empty-actions-row">
+                <button id="btn-empty-camera" class="btn-creative-primary mini">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                  <span>Open Camera</span>
+                </button>
+                <button id="btn-empty-gallery" class="btn-creative-secondary mini">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  <span>Pick Gallery</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Grid of Library Cards (Photo compositions & Text-only verses) -->
+          <div id="library-items-grid" class="library-grid hidden"></div>
+
+        </div>
+      </section>
+
+      <!-- ================= MODALS & ETHICAL PANELS ================= -->
+    </main>
+
+    <!-- PERSISTENT BOTTOM NAVIGATION (Clean 3-Tab Structure) -->
+    <nav class="bottom-nav-bar" aria-label="Main Navigation">
+      <button class="nav-tab active" data-target="view-home" aria-label="Home">
+        <div class="nav-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <span class="nav-label">Home</span>
+      </button>
+
+      <!-- Prominent Center Camera Button -->
+      <button class="nav-tab-camera" id="nav-btn-center-camera" aria-label="Open Camera">
+        <div class="nav-camera-glow"></div>
+        <div class="nav-camera-disc">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </div>
+      </button>
+
+      <button class="nav-tab" data-target="view-library" aria-label="Library">
+        <div class="nav-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <span class="nav-label">Library</span>
+      </button>
+    </nav>
+
+    <!-- ================= MODAL: POETIC ETHICS, FOLK LORE & PRIVACY CHARTER ================= -->
+    <div id="modal-ethics-privacy" class="modal-sheet-backdrop hidden">
+      <div class="modal-sheet-panel ethics-sheet">
+        <div class="sheet-drag-handle"></div>
+        
+        <div class="sheet-header">
+          <div class="sheet-title-group">
+            <span class="sheet-badge-lime">POETIC ETHICS & GOVERNANCE</span>
+            <h2 class="sheet-title">Ethics, Folk Lore & Privacy</h2>
+          </div>
+          <button id="btn-close-ethics" class="sheet-close-btn" aria-label="Close Ethics Modal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <!-- Charter Navigation Tabs -->
+        <div class="ethics-tabs-nav" id="ethics-tabs-nav">
+          <button class="ethics-tab-btn active" data-tab="tab-ethics">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Poetic Ethics & Folk Lore</span>
+          </button>
+          <button class="ethics-tab-btn" data-tab="tab-privacy">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>Privacy Policy</span>
+          </button>
+          <button class="ethics-tab-btn" data-tab="tab-terms">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <span>Terms & Conditions</span>
+          </button>
+        </div>
+
+        <div class="sheet-body-scroll ethics-body">
+          
+          <!-- TAB 1: POETIC ETHICS & FOLK LORE -->
+          <div id="tab-ethics" class="ethics-tab-pane active">
+            <div class="ethics-hero-card">
+              <span class="ethics-badge-tag">CANON OF ARTISTIC RESPONSIBILITY</span>
+              <h3 class="charter-hero-title">Poetry as Sacred Witness, Not Surveillance</h3>
+              <p class="charter-hero-desc">
+                VerseCam adheres to the doctrine of ethical AI: human beings, sacred environments, and personal moments are never commodities for algorithmic extraction.
+              </p>
+            </div>
+
+            <div class="charter-article">
+              <div class="article-num">01</div>
+              <div class="article-body">
+                <h4>Folk Lore, Oral Balladry & Cultural Reverence</h4>
+                <p>
+                  VerseCam integrates centuries-old oral folk lore and balladry structures (Appalachian, Celtic, and pastoral refrains). Our neural models prioritize communal storytelling, honoring elder dignities, weathered tools, rustic hearths, and the quiet resilience of working lives without caricature or exoticization.
+                </p>
+              </div>
+            </div>
+
+            <div class="charter-article">
+              <div class="article-num">02</div>
+              <div class="article-body">
+                <h4>Ethical Grace & Non-Degradation</h4>
+                <p>
+                  The CNN-RNN sequence generator is constrained by strict anti-derogatory lyrical filters. Visual tokens depicting physical differences, imperfections, or vulnerability are embraced with profound compassion and poetic elevation rather than clinical objectification.
+                </p>
+              </div>
+            </div>
+
+            <div class="charter-article">
+              <div class="article-num">03</div>
+              <div class="article-body">
+                <h4>Nudity & Modesty Gating (Safety Guardian)</h4>
+                <p>
+                  Our client-side modesty guardian flags sensitive physical exposure before verses are generated, giving the user immediate artistic controls: apply an impressionist watercolor blur, re-frame the camera, or explicitly confirm creative consent.
+                </p>
+              </div>
+            </div>
+
+            <div class="charter-article">
+              <div class="article-num">04</div>
+              <div class="article-body">
+                <h4>Algorithmic Hallucination Boundaries</h4>
+                <p>
+                  Using Non-Maximum Suppression (NMS) and Spatial Scene Graphs, poetic metaphors are strictly anchored to genuine scene elements, preventing disjointed or misleading hallucinations.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: PRIVACY POLICY -->
+          <div id="tab-privacy" class="ethics-tab-pane">
+            <div class="ethics-hero-card">
+              <span class="ethics-badge-tag">ZERO CLOUD FOOTPRINT</span>
+              <h3 class="charter-hero-title">100% In-Browser Edge Processing</h3>
+              <p class="charter-hero-desc">
+                Your camera feed is your sovereign sanctuary. VerseCam operates entirely in local device memory with zero cloud ingestion.
+              </p>
+            </div>
+
+            <div class="charter-article">
+              <div class="article-num">01</div>
+              <div class="article-body">
+                <h4>No Image Data Ingestion or Transmission</h4>
+                <p>
+                  No raw pixels, video frames, or captured photos are ever transmitted to any remote server or external cloud storage. Detection models (TensorFlow.js COCO-SSD) run strictly within your browser WebGL / WebAssembly sandbox.
+                </p>
+              </div>
+            </div>
+
+            <div class="charter-article">
+              <div class="article-num">02</div>
+              <div class="article-body">
+                <h4>Local Storage Sandbox</h4>
+                <p>
+                  Saved verses, lyric drafts, and polaroid scrapbooks remain strictly inside your browser’s indexed <code>localStorage</code> database on your device. You can purge all data at any moment with a single click.
+                </p>
+              </div>
+            </div>
+
+            <div class="charter-article">
+              <div class="article-num">03</div>
+              <div class="article-body">
+                <h4>Zero Tracking, Ads, or Third-Party Pixels</h4>
+                <p>
+                  VerseCam contains no tracking beacons, telemetry trackers, or advertising SDKs. What you capture remains solely between you and the poem.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: TERMS & CONDITIONS -->
+          <div id="tab-terms" class="ethics-tab-pane">
+            <div class="ethics-hero-card">
+              <span class="ethics-badge-tag">CREATIVE FREEDOM</span>
+              <h3 class="charter-hero-title">100% User Intellectual Property</h3>
+              <p class="charter-hero-desc">
+                You own every single poem, polaroid composition, and lyric arrangement created with VerseCam.
+              </p>
+            </div>
+
+            <div class="charter-article">
+              <div class="article-num">01</div>
+              <div class="article-body">
+                <h4>Full Copyright & Commercial Ownership</h4>
+                <p>
+                  All exported verses, images, and musical lyrics generated through VerseCam belong exclusively to you. You are free to publish, perform, sell, or license your creations without royalty or attribution requirements.
+                </p>
+              </div>
+            </div>
+
+            <div class="charter-article">
+              <div class="article-num">02</div>
+              <div class="article-body">
+                <h4>Acceptable Use & Anti-Harassment</h4>
+                <p>
+                  You agree not to use VerseCam to conduct non-consensual surveillance, create non-consensual intimate imagery, or harass and defame individuals.
+                </p>
+              </div>
+            </div>
+
+            <div class="charter-article">
+              <div class="article-num">03</div>
+              <div class="article-body">
+                <h4>Open Code Transparency</h4>
+                <p>
+                  VerseCam’s procedural neural synthesis, spatial graph algorithms, and reverse rhyme dictionaries are fully inspectable within your browser client.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= MODAL: MODESTY & NUDITY FILTER ALERT ================= -->
+    <div id="modal-safety-alert" class="modal-sheet-backdrop hidden">
+      <div class="modal-sheet-panel safety-alert-sheet">
+        <div class="sheet-drag-handle"></div>
+        
+        <div class="safety-icon-header">
+          <div class="safety-shield-halo">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <span class="safety-pill-badge">CLIENT MODESTY GUARDIAN</span>
+          <h2 class="safety-alert-title">Sensitive Exposure Detected</h2>
+          <p class="safety-alert-desc">
+            Our on-device sensitivity analyzer detected significant skin chrominance / potential exposure. In alignment with our Poetic Ethics Charter, VerseCam safeguards human dignity.
+          </p>
+          <div class="safety-metrics-pill" id="safety-score-label">Exposure Metric: 42% Chrominance Density</div>
+        </div>
+
+        <div class="safety-alert-actions">
+          <button id="btn-safety-blur" class="btn-safety-choice primary">
+            <span class="choice-icon">🎨</span>
+            <div class="choice-texts">
+              <strong>Apply Artistic Modesty Blur</strong>
+              <small>Soft impressionist watercolor veil protecting subject dignity</small>
+            </div>
+          </button>
+
+          <button id="btn-safety-proceed" class="btn-safety-choice secondary">
+            <span class="choice-icon">✦</span>
+            <div class="choice-texts">
+              <strong>I Confirm Artistic Consent</strong>
+              <small>Proceed with unfiltered poetic composition</small>
+            </div>
+          </button>
+
+          <button id="btn-safety-cancel" class="btn-safety-choice outline">
+            <span class="choice-icon">✕</span>
+            <div class="choice-texts">
+              <strong>Cancel & Re-frame Lens</strong>
+              <small>Discard snapshot and return to viewfinder</small>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= MODAL: SONGWRITER SHEET ================= -->
+    <div id="modal-songwriter" class="modal-sheet-backdrop hidden">
+      <div class="modal-sheet-panel songwriter-sheet">
+        <div class="sheet-drag-handle"></div>
+        
+        <div class="sheet-header">
+          <div class="sheet-title-group">
+            <span class="sheet-badge-lime">AI LYRICS STUDIO</span>
+            <h2 class="sheet-title">Songwriter Lab</h2>
+          </div>
+          <button id="btn-close-songwriter" class="sheet-close-btn" aria-label="Close Songwriter">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <div class="sheet-body-scroll">
+          <p class="sheet-intro-hint">Turn the emotional aura of your scenes into structured song lyrics with verses, chorus, and bridge.</p>
+
+          <div class="form-group">
+            <label for="song-theme-input" class="form-label">Theme / Storyline</label>
+            <input type="text" id="song-theme-input" class="form-input" placeholder="e.g. Walking home through purple twilight, letting go of yesterday..." value="Dusk whispers across open hills and quiet crossroads">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Musical Genre & Style</label>
+            <div class="genre-pill-group" id="genre-selector">
+              <button class="genre-pill active" data-genre="Indie Folk">Indie Folk</button>
+              <button class="genre-pill" data-genre="Dream Pop">Dream Pop</button>
+              <button class="genre-pill" data-genre="Synthwave">Synthwave</button>
+              <button class="genre-pill" data-genre="Lo-Fi Acoustic">Lo-Fi Acoustic</button>
+              <button class="genre-pill" data-genre="Spoken Word">Spoken Word</button>
+            </div>
+          </div>
+
+          <button id="btn-generate-lyrics" class="btn-creative-primary full-width">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            <span>Compose Song Lyrics</span>
+          </button>
+
+          <!-- Generated Lyrics Output Container -->
+          <div id="songwriter-results-box" class="lyrics-output-container">
+            <div class="lyrics-meta-bar">
+              <span id="lyrics-genre-tag" class="lyrics-badge">INDIE FOLK // 4/4 CADENCE</span>
+              <button id="btn-copy-lyrics" class="btn-mini-action" title="Copy Lyrics">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span>Copy</span>
+              </button>
+            </div>
+            <div id="lyrics-text-display" class="lyrics-text-flow">
+              <div class="lyric-section-block">
+                <span class="lyric-section-tag">[Verse 1]</span>
+                <p>The amber light slips down the ridge,<br>
+                a solitary shadow crossing the old stone bridge.<br>
+                The gravel crunches under tired boots,<br>
+                remembering how trees hold on by roots.</p>
+              </div>
+              <div class="lyric-section-block chorus-highlight">
+                <span class="lyric-section-tag">[Chorus]</span>
+                <p>Oh, dusk is only morning turned around,<br>
+                a secret melody without a sound.<br>
+                Hold the lens, don’t let the colors fade,<br>
+                in every shadow that the sun has made.</p>
+              </div>
+              <div class="lyric-section-block">
+                <span class="lyric-section-tag">[Verse 2]</span>
+                <p>The violet clouds are drifting out to sea,<br>
+                leaving only silence here for you and me.<br>
+                We took the photograph to keep the time,<br>
+                and turned the stillness into rhyme.</p>
+              </div>
+              <div class="lyric-section-block">
+                <span class="lyric-section-tag">[Outro]</span>
+                <p>Hold the light... hold the light...<br>
+                before the dusk gives way to night.</p>
+              </div>
+            </div>
+            <button id="btn-save-lyrics-to-library" class="btn-mini-lime full-width" style="margin-top:14px;">
+              <span>Save Lyrics to Library</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= MODAL: SETTINGS SHEET ================= -->
+    <div id="modal-settings" class="modal-sheet-backdrop hidden">
+      <div class="modal-sheet-panel settings-sheet">
+        <div class="sheet-drag-handle"></div>
+        
+        <div class="sheet-header">
+          <div class="sheet-title-group">
+            <span class="sheet-badge-coral">PREFERENCES</span>
+            <h2 class="sheet-title">VerseCam Settings</h2>
+          </div>
+          <button id="btn-close-settings" class="sheet-close-btn" aria-label="Close Settings">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <div class="sheet-body-scroll">
+          
+          <!-- Poem Cadence & Form -->
+          <div class="settings-group">
+            <label class="settings-group-title">Poetic Cadence & Form</label>
+            <div class="setting-options-grid" id="cadence-selector">
+              <button class="setting-pill active" data-cadence="free-verse">Free Verse</button>
+              <button class="setting-pill" data-cadence="rhymed-quatrain">Rhymed Quatrain</button>
+              <button class="setting-pill" data-cadence="folk-ballad">Folk Ballad & Lore</button>
+              <button class="setting-pill" data-cadence="haiku">Haiku (5-7-5)</button>
+              <button class="setting-pill" data-cadence="micro-verse">Micro-Verse</button>
+            </div>
+          </div>
+              <button class="setting-pill" data-cadence="micro-verse">Micro-Verse</button>
+            </div>
+          </div>
+
+          <!-- Typography Size -->
+          <div class="settings-group">
+            <label class="settings-group-title">Poem Text Size</label>
+            <div class="setting-options-grid" id="fontsize-selector">
+              <button class="setting-pill" data-size="compact">Compact</button>
+              <button class="setting-pill active" data-size="standard">Editorial (Standard)</button>
+              <button class="setting-pill" data-size="dramatic">Dramatic Large</button>
+            </div>
+          </div>
+
+          <!-- Poem Refresh Cadence -->
+          <div class="settings-group">
+            <label class="settings-group-title">Camera Poem Refresh Behavior</label>
+            <div class="setting-options-grid" id="refresh-mode-selector">
+              <button class="setting-pill active" data-refresh="manual">On Shutter / Manual</button>
+              <button class="setting-pill" data-refresh="auto-10s">Ambient (Every 10s)</button>
+            </div>
+          </div>
+
+          <!-- Tactile Sound Effects -->
+          <div class="settings-row-toggle">
+            <div>
+              <div class="toggle-label">Tactile Audio & Shutter Clicks</div>
+              <div class="toggle-subtext">Synthesized mechanical shutter & tactile click sounds</div>
+            </div>
+            <label class="switch-ui">
+              <input type="checkbox" id="toggle-sound-effects" checked>
+              <span class="slider-round"></span>
+            </label>
+          </div>
+
+          <!-- Gemini API Integration (Optional) -->
+          <div class="settings-group">
+            <label class="settings-group-title">Gemini Vision AI Engine (Optional)</label>
+            <p class="settings-help-text">
+              VerseCam includes an evocative built-in procedural lyrical engine that works 100% offline. You can also provide a Google Gemini API Key for direct multimodal vision analysis.
+            </p>
+            <div class="form-group" style="margin-top: 8px;">
+              <input type="password" id="gemini-api-key-input" class="form-input" placeholder="AIzaSy... (stored locally in browser)">
+            </div>
+            <div class="api-key-status" id="api-key-status-text">Using: Built-in Evocative Vision & Cadence Engine</div>
+          </div>
+
+          <!-- Privacy & Transient Processing Note -->
+          <div class="privacy-note-card">
+            <span class="privacy-icon">🔒</span>
+            <div>
+              <strong>Privacy First:</strong>
+              <p>VerseCam never retains your image bytes on external servers or databases. All image processing and snapshot rendering occur directly inside your browser.</p>
+            </div>
+          </div>
+
+          <!-- Version & Commit Info -->
+          <div class="settings-footer-info">
+            <span>VerseCam Web App v1.4.2</span>
+            <span>Refreshed commit <code>ef22fc9</code></span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATIONS POPUP -->
+    <div id="app-toast" class="toast-notification hidden">
+      <span class="toast-symbol">✦</span>
+      <span id="toast-message" class="toast-text">Verse copied to clipboard</span>
+    </div>
+
+  </div>
+
+  <!-- CLIENT-SIDE OBJECT DETECTION AI (TFJS + COCO-SSD) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+
+  <!-- APPLICATION SCRIPTS -->
+  <script src="js/engine.js"></script>
+  <script src="js/camera.js"></script>
+  <script src="js/canvas-export.js"></script>
+  <script src="js/library.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
